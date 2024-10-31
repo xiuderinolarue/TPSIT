@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aforismi di Scienziati</title>
+    <style>
+        .aforisma {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="aforisma">
+        <p id="aforisma1">“La scienza non è altro che un modo per cercare di capire l'universo.” - Carl Sagan</p>
+        <button onclick="nascondiTesto('aforisma1')">Nascondi Aforisma 1</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma2">“La fisica è come una ragazza. Se non la guardi, non ti darà mai niente.” - Richard Feynman</p>
+        <button onclick="nascondiTesto('aforisma2')">Nascondi Aforisma 2</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma3">“La scienza è un modo di pensare molto più che un corpo di conoscenze.” - Carl Sagan</p>
+        <button onclick="nascondiTesto('aforisma3')">Nascondi Aforisma 3</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma4">“La cosa più incomprensibile dell'universo è che sia comprensibile.” - Albert Einstein</p>
+        <button onclick="nascondiTesto('aforisma4')">Nascondi Aforisma 4</button>
+    </div>
+
+    <div class="aforisma">
+        <p id="aforisma5">“Non possiamo risolvere i nostri problemi con lo stesso modo di pensare che abbiamo usato quando li abbiamo creati.” - Albert Einstein</p>
+        <button onclick="nascondiTesto('aforisma5')">Nascondi Aforisma 5</button>
+    </div>
+
+    <script>
+        function nascondiTesto(id) {
+            const testo = document.getElementById(id);
+            testo.style.display = "none"; 
+        } 
+    </script>
+
+</body>
+</html>
