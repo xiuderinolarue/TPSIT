@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore con Immagine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 10px;
+            background-color: #333;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        #counter {
+            margin-top: 50px;
+        }
+
+        #countdown {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #imageDiv {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #imageDiv img {
+            width: 200px;
+            height: auto;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            font-size: 18px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="#html-css">Esercizi HTML/CSS</a></li>
+            <li><a href="#javascript">Esercizi JavaScript</a></li>
+        </ul>
+    </nav>
+
+    <section id="counter">
+        <div id="countdown">3</div>
+    </section>
+
+    <section id="html-css">
+        <h2>Esercizi HTML/CSS</h2>
+        <ul>
+            <li>Esercizio 1</li>
+            <li>Esercizio 2</li>
+        </ul>
+    </section>
+
+    <section id="javascript">
+        <h2>Esercizi JavaScript</h2>
+        <ul>
+            <li>Esercizio 1</li>
+            <li>Esercizio 2</li>
+        </ul>
+    </section>
+
+    <div id="imageDiv">
+        <img src="https://cdn.basedlabs.ai/f928d8e0-fdd1-11ee-b71e-7be6a3ba0341.jpg?cors" alt="Immagine">
+    </div>
+
+    <script>
+        let countdownValue = 3;
+        let countdownElement = document.getElementById('countdown');
+        let imageDiv = document.getElementById('imageDiv');
+
+        function updateCountdown() {
+            if (countdownValue > 0) {
+                countdownValue--;
+                countdownElement.textContent = countdownValue;
+            } else {
+                clearInterval(countdownInterval);
+                imageDiv.style.display = 'block';
+            }
+        }
+
+        let countdownInterval = setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>
+
