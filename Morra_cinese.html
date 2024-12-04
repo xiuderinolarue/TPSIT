@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morra Cinese</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url("https://m.media-amazon.com/images/I/919u+sH3OyL.jpg");
+        }
+
+        #risultatoGiocatore {
+            font-size: large;
+            margin-top: 20px;
+        }
+
+        #risultatoBot {
+            font-size: large;
+            color: brown;
+        }
+
+        .pulsante-immagine {
+            width: 300px;
+            height: 300px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #risultatoFinale {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #punteggio {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>La Morra Cinese</h1>
+
+    <!-- Sezione delle immagini cliccabili -->
+    <div>
+        <img src="https://www.cosepercrescere.it/wp-content/uploads/2016/04/faccia-di-sasso-650x471.jpg" alt="Sasso" class="pulsante-immagine" id="sasso" />
+        <img src="https://www.acoloristore.it/pimages/Carta-fotografica-per-stampanti-inkjet-inchiostro-lucida-formato-big-2086-601.jpg" alt="Carta" class="pulsante-immagine" id="carta" />
+        <img src="https://merceriafassio.com/cdn/shop/files/forbici-da-sarta--merceria-fassio--genova--fo00001_optimized_1024x1024@2x.jpg?v=1727800056" alt="Forbice" class="pulsante-immagine" id="forbice" />
+    </div>
+
+    <p id="risultatoGiocatore"></p>  <!-- Mostra la scelta del bot -->
+    <p id="risultatoBot"></p>  <!-- Mostra la scelta del giocatore -->
+
+    <div id="risultatoFinale"></div>
+    <div id="punteggio"></div>
+
+    <script>
+        let morra = ["sasso", "carta", "forbice"];
+        let punteggioGiocatore = 0;
+        let punteggioBot = 0;
+
+        // Mostra il punteggio iniziale
+        function aggiornaPunteggio() {
+            document.getElementById("punteggio").innerHTML = `Giocatore: ${punteggioGiocatore} - Bot: ${punteggioBot}`;
+        }
+
+        // Funzione per calcolare il risultato della partita
+        function calcolaRisultato(giocatore, bot) {
+            if (giocatore === bot) {
+                return "Pareggio!";
+            } else if (
+                (giocatore === "sasso" && bot === "forbice") ||
+                (giocatore === "carta" && bot === "sasso") ||
+                (giocatore === "forbice" && bot === "carta")
+            ) {
+                punteggioGiocatore++;
+                return "Hai vinto!";
+            } else {
+                punteggioBot++;
+                return "Il bot ha vinto!";
+            }
+        }let Persona = prompt("scegli il tuo nome");
+
+        // Funzione per fare la scelta casuale del bot
+        function sceltaBot() {
+            let numeroCasuale = Math.floor(Math.random() * 3);
+            return morra[numeroCasuale];
+        }
+
+        // Gestore dei click sulle immagini
+        document.getElementById("sasso").onclick = function() {
+            let sceltaGiocatore = "sasso";
+            let sceltaBotTemp = sceltaBot();
+            document.getElementById("risultatoBot").innerHTML = "Scelta del Bot: " + sceltaBotTemp;
+            document.getElementById("risultatoGiocatore").innerHTML = "Scelta del Giocatore: " + sceltaGiocatore;
+
+            let risultato = calcolaRisultato(sceltaGiocatore, sceltaBotTemp);
+            document.getElementById("risultatoFinale").innerHTML = risultato;
+            aggiornaPunteggio();
+        };
+
+        document.getElementById("carta").onclick = function() {
+            let sceltaGiocatore = "carta";
+            let sceltaBotTemp = sceltaBot();
+            document.getElementById("risultatoBot").innerHTML = "Scelta del Bot: " + sceltaBotTemp;
+            document.getElementById("risultatoGiocatore").innerHTML = "Scelta del Giocatore: " + sceltaGiocatore;
+
+            let risultato = calcolaRisultato(sceltaGiocatore, sceltaBotTemp);
+            document.getElementById("risultatoFinale").innerHTML = risultato;
+            aggiornaPunteggio();
+        };
+
+        document.getElementById("forbice").onclick = function() {
+            let sceltaGiocatore = "forbice";
+            let sceltaBotTemp = sceltaBot();
+            document.getElementById("risultatoBot").innerHTML = "Scelta del Bot: " + sceltaBotTemp;
+            document.getElementById("risultatoGiocatore").innerHTML = "Scelta del Giocatore: " + sceltaGiocatore;
+
+            let risultato = calcolaRisultato(sceltaGiocatore, sceltaBotTemp);
+            document.getElementById("risultatoFinale").innerHTML = risultato;
+            aggiornaPunteggio();
+        };
+
+        // Inizializza il punteggio all'inizio del gioco
+        aggiornaPunteggio();
+    </script>
+
+</body>
+</html>
