@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temporizzatore e Media dei Numeri Casuali</title>
+  <style>
+    body {
+      text-align: center;
+      padding: 20px;
+    }
+    #randomNumber {
+      font-size: 2em;
+      color: #2c3e50;
+    }
+    #average {
+      font-size: 1.5em;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Temporizzatore con Numeri Casuali</h1>
+  <div id="randomNumber">Numero Estratto: --</div>
+  <div id="average">Media: --</div>
+
+  <script>
+    // Array per memorizzare i numeri casuali
+    let numeriCasuali = [];
+    let somma = 0;
+
+    // Funzione per generare un numero casuale tra 1 e 90
+    function estraiNumeroCasuale() {
+      let numero = Math.floor(Math.random() * 90) + 1;
+      numeriCasuali[numeriCasuali.length] = numero; // Aggiungi il numero alla fine dell'array
+      somma += numero; // Aggiorna la somma dei numeri
+      document.getElementById("randomNumber").innerText = "Numero Estratto: " + numero;
+      calcolaMedia();
+    }
+
+    // Funzione per calcolare la media dei numeri estratti
+    function calcolaMedia() {
+      if (numeriCasuali.length === 0) {
+        document.getElementById("average").innerText = "Media: --";
+        return;
+      }
+      let media = somma / numeriCasuali.length;
+      document.getElementById("average").innerText = "Media: " + media.toFixed(2);
+    }
+
+    // Estrae un numero casuale ogni 3 secondi
+    setInterval(estraiNumeroCasuale, 3000);
+  </script>
+
+</body>
+</html>
