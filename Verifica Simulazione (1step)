@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temporizzatore con Numeri Casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Temporizzatore Numerico</h1>
+<p id="timer"></p>
+
+<div class="output" id="output"></div>
+
+<script>
+    function isPrime(num) {
+        if (num <= 1) return false;
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+
+    function randomNumberOperations() {
+        const num = Math.floor(Math.random() * 1000) + 1; // Numero casuale tra 1 e 1000
+        const isEven = num % 2 === 0;
+        const isOdd = num % 2 !== 0;
+        const prime = isPrime(num);
+        const double = num * 2;
+        const half = num / 2;
+        const complement = 1000 - num;
+        const sum = (num - 1) + num + (num + 1);
+        const multiply = num * 3.14;
+
+        let output = `<h3>Numero: ${num}</h3>`;
+        output += `<p><strong>Pari:</strong> ${isEven ? 'Sì' : 'No'}</p>`;
+        output += `<p><strong>Dispari:</strong> ${isOdd ? 'Sì' : 'No'}</p>`;
+        output += `<p><strong>Primo:</strong> ${prime ? 'Sì' : 'No'}</p>`;
+        output += `<p><strong>Il doppio:</strong> ${double}</p>`;
+        output += `<p><strong>La metà intera:</strong> ${Math.floor(half)}</p>`;
+        output += `<p><strong>Il complemento (1000 - n):</strong> ${complement}</p>`;
+        output += `<p><strong>La somma con il precedente e il successivo:</strong> ${sum}</p>`;
+        output += `<p><strong>Moltiplicato per 3.14:</strong> ${multiply.toFixed(2)}</p>`;
+
+        document.getElementById('output').innerHTML = output;
+    }
+
+    function startTimer() {
+        setInterval(randomNumberOperations, 5000); // Esegui ogni 5 secondi
+    }
+
+    startTimer();
+</script>
+
+</body>
+</html>
