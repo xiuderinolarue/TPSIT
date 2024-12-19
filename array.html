@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array 1</title>
+    <style>
+        #container {
+            height: 200px;
+            width: 500px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Array Esercizio 1</h1>
+
+    <p>Lista degli elementi:</p>
+    <div id="container">
+        <p id="out1"></p>
+    </div>
+    <p>Media dei numeri estratti: <span id="media"></span></p>
+
+    <script>
+        // Inizializza un array vuoto per memorizzare i numeri casuali
+        let numeri = [];
+
+        // Funzione per generare un numero casuale tra 1 e 90
+        function estraiNumeroCasuale() {
+            return Math.floor(Math.random() * 90) + 1;
+        }
+
+        // Funzione per calcolare la media dei numeri nell'array
+        function calcolaMedia() {
+            let somma = numeri.reduce((acc, num) => acc + num, 0);
+            return (somma / numeri.length).toFixed(2); // Limita la media a 2 decimali
+        }
+
+        // Funzione che riempi l'array con un numero casuale ogni 3 secondi
+        function RiempiArrayConNumeri() {
+            setInterval(() => {
+                let numero = estraiNumeroCasuale();
+                numeri.push(numero);  // Aggiungi il numero estratto all'array
+
+                // Aggiorna la lista degli elementi nel container
+                document.getElementById("out1").innerHTML = numeri.join(', ');
+
+                // Calcola e aggiorna la media
+                let media = calcolaMedia();
+                document.getElementById("media").innerText = media;
+
+            }, 3000); // Estrai un numero ogni 3 secondi
+        }
+
+        // Avvia la funzione quando la pagina è pronta
+        RiempiArrayConNumeri();
+    </script>
+</body>
+</html>
