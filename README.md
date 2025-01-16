@@ -9,7 +9,7 @@
     <p><strong>Luogo di residenza:</strong> [Nichelino]</p>
 
     <h2>Chi Sono</h2>
-    <p>[Sono un ragazzo di 15 anni con la passione per il pugilato, mi piace il cibo, i videogame, uscire con gli amici e stare con la mia famiglia.]</p>
+    <p>[Sono un ragazzo di 16 anni con la passione per il pugilato, mi piace il cibo, i videogame, uscire con gli amici e stare con la mia famiglia.]</p>
 
     <h2>Interessi e Passioni</h2>
   
