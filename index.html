@@ -1,95 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <title>Il Mio Menù</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <style>
-    body {
-      background-color: #d3d3d3; /* Pastel grey */
-      padding: 20px;
-    }
-    .navbar {
-      background-color: #343a40;
-    }
-    .navbar-brand {
-      color: #ffffff !important;
-    }
-    .nav-link {
-      color: #ffffff !important;
-    }
-    .nav-link:hover {
-      color: #ffc107 !important;
-    }
-    .dropdown-menu {
-      background-color: #343a40;
-    }
-    .dropdown-item {
-      color: #ffffff;
-    }
-    .dropdown-item:hover {
-      background-color: #495057;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<div class="container">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Daniele Grifo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              HTML
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/Pagina_WEB_DIV_ANNIDATI.html">Pagina Web DIV Anni Dati</a></li>
-              <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/Es%201%20css.html">Scatole Poesie</a></li>
-              <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/flipcard.html">Flip Card</a></li>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-               
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              JavaScript
-            </a>
-            <ul class="dropdown-menu">
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/Compito_bottoni.html">bottoni1</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/J2.html">bottoni2</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/JS3.html">bottoni3</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/JS4.html">calcolo trekking</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/JS5.html">numero crescente</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/JS6.html">countdown</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/Morra_cinese.html">Morra VS Bot</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/array.html">Array1</a></li>
-               <li><a class="dropdown-item" href="https://xiuderinolarue.github.io/TPSIT/array.html">Sushi</a></li>
-            </ul>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-  </nav>
-</div>
+    <title>Fullstack Sushi</title>
+  </head>
 
+  <body>
+       <!-- Image and text -->
+       <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      Fullstack Sushi
+                </a>
+             </div>
+        </nav>
+        <div class="container my-5 text-center" style="max-width: 580px;">
+            <h1>Sushi per Programmatori</h1>
+            <p class="lead">Visualizza le tue schede.</p>
+            <a href="https://xiuderinolarue.github.io/TPSIT/menu.html">I miei compiti.</a>
+          </div>
+          <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card" style="width: 18rem;">
+                        <img src="california.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">California Roll</h5>
+                          <p class="card-text">Un piatto ricco di saggezza e tradizione. Ogni caloria ingerita contiene il coraggio di Son Goku, la perspicacia del Detective Conan e la prestanza fisica di Doraemon</p>
+                          <a href="#" class="btn btn-primary">Acquista</a>
+                        </div>
+                      </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
+
 </html>
