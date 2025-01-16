@@ -3,7 +3,7 @@
 <body>
     <h1>La Mia Scheda Personale</h1>
     <p><strong>Nome e Cognome:</strong> [Daniele Grifo]</p>
-    <p><strong>Età:</strong> [15 anni]</p>
+    <p><strong>Età:</strong> [16 anni]</p>
     <p><strong>Classe e Istituto:</strong> [3B Info, Istituto di Istruzione Superiore J.C. Maxwell]</p>
     <p><strong>Data di nascita:</strong> [25/10/2008]</p>
     <p><strong>Luogo di residenza:</strong> [Nichelino]</p>
