@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottoni e Tempo</title>
+    <style>
+        /* Impostazioni generali della pagina */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;  /* Altezza della pagina = 100% della viewport */
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Contenitore per i bottoni */
+        .button-container {
+            text-align: center;
+        }
+
+        /* Stili per i bottoni */
+        button {
+            font-size: 20px;
+            padding: 20px 40px;
+            margin: 15px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        #button1 { background-color: #4CAF50; } /* Verde */
+        #button2 { background-color: #2196F3; } /* Blu */
+        #button3 { background-color: #f44336; } /* Rosso */
+        #button4 { background-color: #FF9800; } /* Arancione */
+
+        /* Hover effect per i bottoni */
+        button:hover { 
+            opacity: 0.8;
+            transform: scale(1.1); /* Effetto di ingrandimento al passaggio del mouse */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="button-container">
+        <h1>Premi un bottone per vedere la data e ora</h1>
+        <button id="button1">Bottone 1</button>
+        <button id="button2">Bottone 2</button>
+        <button id="button3">Bottone 3</button>
+        <button id="button4">Bottone 4</button>
+    </div>
+
+    <div id="output" style="text-align: center; margin-top: 20px;"></div>
+
+    <script>
+        let firstClickTime = null, times = [];
+
+        function handleClick(event) {
+            const currentTime = new Date();
+            const formattedTime = currentTime.toLocaleString();
+            const buttonId = event.target.id;  // Ottieni l'ID del bottone cliccato
+
+            // Mostra la data, ora e bottone cliccato
+            document.getElementById('output').innerHTML = `<p><strong>Bottone cliccato:</strong> ${buttonId}</p><p><strong>Data e Ora:</strong> ${formattedTime}</p>`;
+
+            if (firstClickTime) {
+                const elapsed = (currentTime - firstClickTime) / 1000;
+                times.push({
+                    elapsedMilliseconds: currentTime - firstClickTime,
+                    elapsedSeconds: elapsed,
+                    elapsedTenths: elapsed * 10,
+                    elapsedHundredths: elapsed * 100
+                });
+                console.log(times);
+            } else {
+                firstClickTime = currentTime;
+            }
+        }
+
+        document.querySelectorAll('button').forEach(button => button.addEventListener('click', handleClick));
+    </script>
+
+</body>
+</html>
