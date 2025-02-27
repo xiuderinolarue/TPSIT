@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco Memory Sequenziale</title>
+    <!-- Collegamento al foglio di stile Bootstrap per la gestione del design -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Impostazioni per il corpo della pagina, colore di sfondo scuro e testo bianco */
+        body {
+            background-color: #121212;
+            color: #fff;
+        }
+
+        /* Griglia di gioco con 3 colonne */
+        #gameBoard {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+        }
+
+        /* Stile per ogni pulsante */
+        .button {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #444;
+            background-color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        /* Stile quando un pulsante è attivo (sequenza in corso) */
+        .button.active {
+            background-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column align-items-center">
+    <div class="container py-5 text-center">
+        <h1 class="mb-4">Gioco Memory Sequenziale</h1>
+        <!-- Pulsante per avviare il gioco -->
+        <button id="startBtn" class="btn btn-primary mb-4">Inizia Gioco</button>
+        <div id="message" class="mb-3"></div> <!-- Area per messaggi di stato -->
+        <div id="score" class="mb-4">Punteggio: 0</div> <!-- Visualizzazione del punteggio -->
+        <div id="gameBoard" class="row justify-content-center"></div> <!-- Griglia di gioco -->
+    </div>
+
+    <script>
+        // Variabili per la sequenza, l'input dell'utente, il punteggio e lo stato del gioco
+        let sequence = [], userInput = [], score = 0, gameInProgress = false;
+
+        // Collegamento agli elementi HTML
+        const startBtn = document.getElementById("startBtn"),
+            message = document.getElementById("message"),
+            scoreDisplay = document.getElementById("score"),
+            gameBoard = document.getElementById("gameBoard");
+
+        // Funzione per creare la griglia di gioco
+        function createGameBoard() {
+            gameBoard.innerHTML = ''; // Pulisce la griglia
+            for (let i = 0; i < 9; i++) {
+                const button = document.createElement('button'); // Crea un nuovo pulsante
+                button.classList.add('button'); // Aggiunge la classe 'button' per lo stile
+                button.dataset.id = i; // Imposta un ID personalizzato per ogni pulsante
+                button.addEventListener('click', handleUserInput); // Aggiunge un evento di click
+                gameBoard.appendChild(button); // Aggiunge il pulsante alla griglia
+            }
+        }
+
+        // Funzione per avviare il gioco
+        function startGame() {
+            gameInProgress = true; // Il gioco è in corso
+            sequence = []; // Reset della sequenza
+            userInput = []; // Reset dell'input dell'utente
+            score = 0; // Reset del punteggio
+            scoreDisplay.textContent = `Punteggio: ${score}`; // Visualizza il punteggio
+            message.textContent = "Memorizza la sequenza!"; // Mostra un messaggio
+            nextRound(); // Passa al prossimo turno
+        }
+
+        // Funzione per iniziare un nuovo turno
+        function nextRound() {
+            userInput = []; // Resetta l'input dell'utente
+            sequence.push(Math.floor(Math.random() * 9)); // Aggiunge un numero casuale alla sequenza
+            showSequence(0); // Mostra la sequenza
+        }
+
+        // Funzione per mostrare la sequenza
+        function showSequence(index) {
+            if (index < sequence.length) { // Se ci sono ancora pulsanti da mostrare
+                const button = document.querySelectorAll('.button')[sequence[index]]; // Seleziona il pulsante dalla sequenza
+                button.classList.add('active'); // Aggiungi l'effetto attivo al pulsante
+                setTimeout(() => {
+                    button.classList.remove('active'); // Rimuovi l'effetto attivo
+                    setTimeout(() => showSequence(index + 1), 300); // Mostra il pulsante successivo
+                }, 500);
+            } else {
+                message.textContent = "La sequenza è finita, tocca ai tuoi turni!"; // Messaggio per l'utente
+            }
+        }
+
+        // Funzione per gestire l'input dell'utente
+        function handleUserInput(event) {
+            if (!gameInProgress) return; // Se il gioco non è in corso, non fare nulla
+            const buttonId = parseInt(event.target.dataset.id); // Ottieni l'ID del pulsante cliccato
+            userInput.push(buttonId); // Aggiungi l'input dell'utente
+            if (userInput[userInput.length - 1] !== sequence[userInput.length - 1]) { // Se l'input non corrisponde alla sequenza
+                gameInProgress = false; // Termina il gioco
+                message.textContent = "Errore! Gioco terminato."; // Messaggio di errore
+                setTimeout(startGame, 2000); // Avvia una nuova partita dopo 2 secondi
+            } else if (userInput.length === sequence.length) { // Se l'utente ha completato la sequenza
+                score++; // Incrementa il punteggio
+                scoreDisplay.textContent = `Punteggio: ${score}`; // Mostra il nuovo punteggio
+                message.textContent = "Bravo! Passa al prossimo turno."; // Messaggio di congratulazioni
+                setTimeout(nextRound, 1500); // Passa al turno successivo dopo 1,5 secondi
+            }
+        }
+
+        // Evento per iniziare il gioco al click del pulsante
+        startBtn.addEventListener('click', () => {
+            if (!gameInProgress) startGame();
+        });
+
+        // Crea la griglia di gioco quando la pagina viene caricata
+        createGameBoard();
+    </script>
+</body>
+
+</html>
