@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Frasi Casuali</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+        }
+        .combinazioni-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .combinazione {
+            background-color: #e3f2fd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 5px solid #1e88e5;
+        }
+        button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
+            background-color: #1e88e5;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1565c0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generatore di Frasi Casuali</h1>
+    <button id="generaButton">Genera Frasi Casuali</button>
+
+    <div class="combinazioni-container" id="combinazioniContainer">
+        <!-- Le frasi generate verranno mostrate qui -->
+    </div>
+
+    <script>
+        let soggetti = ["Mario", "Luca", "Giulia", "Anna", "Francesco", "Elena", "Roberto", "Sara", "Davide", "Chiara"];
+        let verbi = ["mangia", "corre", "legge", "scrive", "disegna", "parla", "cammina", "guarda", "ascolta", "gioca"];
+        let complemento = ["una mela", "nel parco", "un libro", "una lettera", "un quadro", "al telefono", "sul marciapiede", "la TV", "musica", "a calcio"];
+
+        // Funzione per generare una frase casuale
+        function generaFraseCasuale() {
+            let soggetto = soggetti[Math.floor(Math.random() * soggetti.length)];
+            let verbo = verbi[Math.floor(Math.random() * verbi.length)];
+            let compl = complemento[Math.floor(Math.random() * complemento.length)];
+
+            return `${soggetto} ${verbo} ${compl}`;
+        }
+
+        // Funzione per visualizzare una nuova combinazione di frase
+        function mostraFrase() {
+            let container = document.getElementById("combinazioniContainer");
+            let frase = generaFraseCasuale();
+
+            let div = document.createElement("div");
+            div.classList.add("combinazione");
+            div.textContent = frase;
+
+            container.appendChild(div);
+        }
+
+        // Aggiungi l'evento al bottone per generare una nuova frase
+        document.getElementById("generaButton").addEventListener("click", mostraFrase);
+    </script>
+    
+</body>
+</html>
