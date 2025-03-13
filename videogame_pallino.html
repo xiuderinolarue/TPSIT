@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gioco del Punto Luminoso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      text-align: center;
+      background-color: #e0f7fa;
+    }
+    #game-area {
+      width: 100%;
+      height: 400px;
+      background-color: #212121;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    #click-point {
+      position: absolute;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); /* Centra il punto */
+    }
+    .scoreboard {
+      margin-top: 20px;
+    }
+    .scoreboard p {
+      font-size: 1.2em;
+    }
+    .level-description {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gioco del Punto Luminoso</h1>
+    <div id="game-area" class="d-none">
+      <div id="click-point"></div>
+    </div>
+
+    <div class="scoreboard d-none">
+      <h2>Risultati</h2>
+      <p>Nome: <span id="player-name-result"></span></p>
+      <p>Email: <span id="player-email-result"></span></p>
+      <p>Numero di clic: <span id="click-count"></span></p>
+      <p>Tempo totale: <span id="total-time"></span> secondi</p>
+      <p>Tempo medio per clic: <span id="average-time"></span> secondi</p>
+    </div>
+
+    <div class="level-description">
+      <p id="level-info">Livello 1: 2 secondi per clic</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let clickTimes = [],
+        clickCount = 0,
+        timeLimit = 2,
+        gameInterval,
+        currentLevel = 1,
+        playerName = "",
+        playerEmail = "";
+
+    // Funzione per memorizzare il nome e l'email
+    function savePlayerInfo(name, email) {
+      playerName = name;
+      playerEmail = email;
+    }
+
+    // Funzione per gestire il click sul punto
+    function handleClick() {
+      const start = Date.now(); // Registra il tempo del clic
+      clickCount++; // Incrementa il contatore dei clic
+      clickTimes.push(0); // Aggiungi un valore iniziale per il primo clic
+
+      // Quando viene cliccato il punto, registra il tempo
+      clickTimes[clickCount - 1] = (Date.now() - start) / 1000;
+
+      // Aggiorna il contatore dei clic sullo schermo
+      document.getElementById('click-count').textContent = clickCount;
+
+      // Quando sono stati fatti 10 clic, termina il gioco
+      if (clickCount === 10) endGame();
+    }
+
+    // Funzione per avviare il gioco
+    function startGame() {
+      // Nasconde il modulo di nome ed email e mostra il modulo di gioco
+      document.getElementById('game-area').classList.remove('d-none');
+      document.getElementById('click-count').textContent = clickCount; // Mostra il contatore iniziale
+
+      // Avvia il gioco
+      const point = document.getElementById('click-point');
+      point.onclick = handleClick; // Imposta la funzione da eseguire al clic
+
+      // Crea un intervallo che cambia la posizione del punto ogni tot secondi
+      gameInterval = setInterval(movePoint, timeLimit * 1000);
+    }
+
+    // Funzione per spostare il punto in una posizione casuale
+    function movePoint() {
+      const gameArea = document.getElementById('game-area');
+      const point = document.getElementById('click-point');
+      point.style.left = `${Math.random() * (gameArea.clientWidth - 30)}px`;
+      point.style.top = `${Math.random() * (gameArea.clientHeight - 30)}px`;
+      point.style.backgroundColor = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+      // Modifica dimensioni casuali del punto
+      point.style.width = `${Math.random() * (50 - 20) + 20}px`;
+      point.style.height = point.style.width;
+    }
+
+    // Funzione per terminare il gioco e mostrare i risultati
+    function endGame() {
+      clearInterval(gameInterval); // Ferma l'intervallo
+      const totalTime = clickTimes.reduce((acc, curr) => acc + curr, 0); // Calcola il tempo totale
+      const averageTime = totalTime / clickTimes.length; // Calcola il tempo medio per clic
+      document.querySelector('.scoreboard').classList.remove('d-none'); // Mostra i risultati
+      document.getElementById('total-time').textContent = totalTime.toFixed(2);
+      document.getElementById('average-time').textContent = averageTime.toFixed(2);
+      document.getElementById('player-name-result').textContent = playerName;
+      document.getElementById('player-email-result').textContent = playerEmail;
+    }
+
+    // Funzione per cambiare livello
+    function setLevel(level) {
+      currentLevel = level;
+      switch(level) {
+        case 1:
+          timeLimit = 2;
+          break;
+        case 2:
+          timeLimit = 1.8;
+          break;
+        case 3:
+          timeLimit = 1.5;
+          break;
+        case 4:
+          timeLimit = 1.2;
+          break;
+        case 5:
+          timeLimit = 1;
+          break;
+      }
+      document.getElementById('level-info').textContent = `Livello ${level}: Tempo di reazione: ${timeLimit} secondi`;
+      startGame();
+    }
+
+    // Salva il nome e l'email e imposta il gioco
+    function startNewGame() {
+      const name = prompt("Inserisci il tuo nome:");
+      const email = prompt("Inserisci la tua email:");
+      if (name && email) {
+        savePlayerInfo(name, email);
+        setLevel(1); // Inizia al livello 1
+      }
+    }
+
+    // Avvia il gioco subito
+    startNewGame();
+  </script>
+</body>
+</html>
