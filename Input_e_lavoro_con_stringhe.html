@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8"> <!-- Definisce il set di caratteri per la pagina -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Imposta il viewport per una corretta visualizzazione sui dispositivi mobili -->
+    <title>Form di Input</title> <!-- Titolo della pagina che apparirà nella barra del browser -->
+    <style>
+        /* Stili CSS per centrare il contenuto e dare uno sfondo chiaro */
+        body {
+            font-family: Arial, sans-serif; /* Imposta il font della pagina */
+            display: flex; /* Usa il modello di layout flexbox */
+            justify-content: center; /* Centra orizzontalmente il contenuto */
+            align-items: center; /* Centra verticalmente il contenuto */
+            height: 100vh; /* Imposta l'altezza della pagina a 100% della finestra del browser */
+            margin: 0; /* Rimuove i margini predefiniti */
+            background-color: #f4f4f4; /* Imposta il colore di sfondo della pagina */
+            text-align: center; /* Allinea il testo al centro */
+        }
+
+        .container {
+            text-align: left; /* Allinea il testo a sinistra all'interno del contenitore */
+            padding: 20px; /* Aggiunge uno spazio interno (padding) */
+            border: 1px solid #ddd; /* Aggiunge un bordo grigio chiaro al contenitore */
+            border-radius: 8px; /* Arrotonda gli angoli del contenitore */
+            width: 400px; /* Imposta la larghezza fissa del contenitore */
+            background-color: white; /* Imposta lo sfondo bianco per il contenitore */
+        }
+
+        label, button {
+            margin-top: 10px; /* Aggiunge uno spazio sopra i label e il bottone */
+        }
+
+        .output { 
+            margin-top: 20px; /* Aggiunge uno spazio sopra la sezione di output */
+            padding-top: 10px; /* Aggiunge uno spazio sopra il contenuto dell'output */
+            border-top: 1px solid #ddd; /* Aggiunge una linea di separazione sopra l'output */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenitore principale per il form -->
+    <div class="container">
+        <h2>Inserisci due stringhe:</h2> <!-- Titolo del form -->
+
+        <!-- Form che raccoglie i dati delle due stringhe -->
+        <form id="stringForm">
+            <label for="inputA">Stringa A:</label> <!-- Etichetta per il primo campo di input -->
+            <input type="text" id="inputA"><br> <!-- Campo di input per la stringa A -->
+            <label for="inputB">Stringa B:</label> <!-- Etichetta per il secondo campo di input -->
+            <input type="text" id="inputB"><br> <!-- Campo di input per la stringa B -->
+            <button type="button" onclick="processStrings()">Elabora</button> <!-- Bottone per attivare la funzione di elaborazione -->
+        </form>
+
+        <!-- Sezione in cui verranno mostrati i risultati -->
+        <div class="output" id="output"></div>
+    </div>
+
+    <script>
+        // Funzione che elabora le stringhe e mostra i risultati
+        function processStrings() {
+            const inputA = document.getElementById('inputA').value; // Ottiene il valore della stringa A
+            const inputB = document.getElementById('inputB').value; // Ottiene il valore della stringa B
+
+            const lengthA = inputA.length; // Calcola la lunghezza della stringa A
+            const lengthB = inputB.length; // Calcola la lunghezza della stringa B
+
+            // Funzione che restituisce la stringa al contrario
+            const reverse = str => str.split('').reverse().join('');
+
+            // Funzione che unisce due stringhe
+            const concatenate = (str1, str2) => str1 + str2;
+
+            // Funzione che calcola la somma delle lunghezze e verifica se la stringa B è troppo lunga
+            const checkLength = (len1, len2) => len1 + len2 + (len2 > 20 ? '<p style="color: red;">Stringa B troppo lunga!</p>' : '');
+
+            // Crea l'output HTML che verrà inserito nel DOM
+            const outputHtml = `
+                <p>Lunghezza di A: ${lengthA}</p>
+                <p>Lunghezza di B: ${lengthB}</p>
+                <p>A al contrario: ${reverse(inputA)}</p>
+                <p>B al contrario: ${reverse(inputB)}</p>
+                <p>Concatenazione: ${concatenate(inputA, inputB)}</p>
+                <p>Somma lunghezze: ${checkLength(lengthA, lengthB)}</p>
+            `;
+
+            // Inserisce il risultato generato nell'elemento con id 'output'
+            document.getElementById('output').innerHTML = outputHtml;
+        }
+    </script>
+
+</body>
+</html>
