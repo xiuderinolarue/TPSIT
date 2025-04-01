@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unità 5 - Riepilogo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Menu laterale */
+        .menu {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #333;
+            padding-top: 30px;
+            transition: 0.3s;
+            z-index: 1000;
+        }
+
+        .menu a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.3s;
+            border-bottom: 1px solid #444;
+        }
+
+        .menu a:hover {
+            background-color: #ff5722; /* Colore arancione */
+            color: white;
+        }
+
+        /* Icona per il menu */
+        .menu-icon {
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            cursor: pointer;
+        }
+
+        /* Contenuto principale */
+        .content-container {
+            margin-left: 250px;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-size: 1.6em;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            display: block;
+            padding: 15px;
+            margin: 15px 0;
+            background-color: #ff5722; /* Colore arancione */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #e64a19;
+            transform: translateY(-3px);
+        }
+
+        .toggle-content {
+            display: none;
+            background-color: #f1f3f5;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .toggle-content.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+    </style>
+    <script>
+        // Funzione per aprire/chiudere il menu
+        function toggleMenu() {
+            const menu = document.querySelector(".menu");
+            const content = document.querySelector(".content-container");
+            const currentLeft = menu.style.left;
+
+            // Se il menu è chiuso, aprilo
+            if (currentLeft === "" || currentLeft === "-250px") {
+                menu.style.left = "0";
+                content.style.marginLeft = "250px";
+            } 
+            // Se il menu è aperto, chiudilo
+            else {
+                menu.style.left = "-250px";
+                content.style.marginLeft = "0";
+            }
+        }
+
+        // Funzione per mostrare/nascondere il contenuto
+        function toggleVisibility(id) {
+            const content = document.getElementById(id);
+            content.classList.toggle("show");
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- Menu Laterale -->
+    <div class="menu">
+        <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+        <a href="javascript:void(0);" onclick="toggleVisibility('network-protocols')">Protocolli di Rete</a>
+        <a href="javascript:void(0);" onclick="toggleVisibility('osi-model')">Modello OSI</a>
+        <a href="javascript:void(0);" onclick="toggleVisibility('network-topologies')">Topologie di Rete</a>
+        <a href="javascript:void(0);" onclick="toggleVisibility('ip-addressing')">Indirizzamento IP</a>
+        <a href="javascript:void(0);" onclick="toggleVisibility('cybersecurity')">Sicurezza Informatica</a>
+        <a href="javascript:void(0);" onclick="toggleVisibility('ethernet-cable')">Creazione Cavo Ethernet</a>
+    </div>
+
+    <!-- Icona per aprire il menu -->
+    <span class="menu-icon" style="font-size: 30px; position: fixed; top: 20px; left: 20px; color: #333;" onclick="toggleMenu()">&#9776;</span>
+
+    <!-- Contenuto principale -->
+    <div class="content-container">
+        <h1>Unità 5 - Riepilogo</h1>
+
+        <h2>Argomenti Trattati</h2>
+
+        <div id="network-protocols" class="toggle-content">
+            <p><strong>Protocolli di rete</strong>: I protocolli TCP/IP, HTTP, HTTPS, FTP, SMTP, POP3 e IMAP sono le fondamenta della comunicazione su internet. TCP/IP è alla base di Internet, HTTP e HTTPS sono utilizzati per la navigazione web, mentre FTP è usato per il trasferimento di file, SMTP per inviare email e POP3/IMAP per riceverle.</p>
+        </div>
+
+        <div id="osi-model" class="toggle-content">
+            <p><strong>Modello OSI</strong>: Il modello OSI è un modello di riferimento che descrive la trasmissione dei dati in sette livelli, dalla trasmissione fisica fino all'interfaccia utente finale. Ogni livello ha compiti specifici, dal livello fisico (hardware) fino al livello applicativo (software).</p>
+        </div>
+
+        <div id="network-topologies" class="toggle-content">
+            <p><strong>Topologie di rete</strong>: Le topologie descrivono la disposizione fisica o logica dei dispositivi in una rete. Le principali topologie sono Bus, Stella, Anello e Mesh, ciascuna con i propri vantaggi e svantaggi in termini di efficienza e costi.</p>
+        </div>
+
+        <div id="ip-addressing" class="toggle-content">
+            <p><strong>Indirizzamento IP</strong>: Gli indirizzi IP permettono di identificare in modo univoco ogni dispositivo connesso a una rete. IPv4 è il sistema tradizionale con 32 bit, mentre IPv6, con 128 bit, è stato introdotto per risolvere la scarsità di indirizzi IP.</p>
+        </div>
+
+        <div id="cybersecurity" class="toggle-content">
+            <p><strong>Sicurezza informatica</strong>: La sicurezza informatica riguarda la protezione delle informazioni da attacchi, furti o danni. Gli strumenti fondamentali per la sicurezza di rete includono firewall, antivirus e crittografia.</p>
+        </div>
+
+        <h2>Laboratorio: Creazione di un Cavo Ethernet</h2>
+        <div id="ethernet-cable" class="toggle-content">
+            <p><strong>Creazione di un Cavo Ethernet</strong>: Questo laboratorio ti insegnerà come creare un cavo Ethernet, seguendo questi passaggi: preparazione del cavo, spellatura dei fili, inserimento nei connettori RJ-45, crimpatura, e test del cavo con un tester di rete.</p>
+        </div>
+
+    </div>
+
+</body
