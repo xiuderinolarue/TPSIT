@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generatore di Numeri Casuali</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 20px;
+        }
+        #output {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #aaa;
+            padding: 10px;
+            white-space: pre-wrap;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #media {
+            margin-top: 30px;
+            padding: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2d8b3b;
+        }
+        input, button {
+            font-size: 1.1em;
+            padding: 8px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Generatore di Numeri Casuali e Media</h1>
+    <label for="min">Valore Minimo:</label>
+    <input type="number" id="min" value="1">
+    <label for="max">Valore Massimo:</label>
+    <input type="number" id="max" value="100">
+    <button onclick="generaNumeri()">Genera Numeri</button>
+    
+    <div id="output"></div>
+    <div id="media"></div>
+   
+    <script>
+        function generaNumeri() {
+            const min = parseFloat(document.getElementById('min').value);
+            const max = parseFloat(document.getElementById('max').value);
+            
+            if (isNaN(min) || isNaN(max) || min >= max) {
+                alert("Intervallo non valido! Assicurati che 'Min' sia minore di 'Max'.");
+                return;
+            }
+            
+            let numeriCasuali = [];
+            let numeriVisualizzati = "";
+            for (let i = 0; i < 10000; i++) {
+                // Genera numeri reali tra min e max, e arrotonda a 2 decimali
+                let numeroCasuale = (Math.random() * (max - min) + min).toFixed(2); 
+                numeriCasuali.push(parseFloat(numeroCasuale));
+                numeriVisualizzati += numeroCasuale + " ";
+                
+                if (i % 50 === 49) numeriVisualizzati += "\n"; // Vai a capo ogni 50 numeri
+            }
+            
+            // Calcolare la media dei primi 50 numeri
+            let media = calcolaMedia(numeriCasuali);
+            numeriVisualizzati += `\n\nMedia dei primi 50 numeri: ${media.toFixed(2)}`;
+
+            // Mostra i numeri generati e la media
+            document.getElementById('output').textContent = numeriVisualizzati;
+            document.getElementById('media').textContent = `La media dei primi 50 numeri è: ${media.toFixed(2)}`;
+
+            // Alert che conferma il calcolo della media
+            alert(`La media dei primi 50 numeri casuali è stata calcolata: ${media.toFixed(2)}`);
+        }
+
+        // Funzione per calcolare la media dei primi 50 numeri
+        function calcolaMedia(numeri) {
+            let somma = 0;
+            for (let i = 0; i < 50; i++) {
+                somma += numeri[i];
+            }
+            return somma / 50;
+        }
+    </script>
+</body>
+</html>
